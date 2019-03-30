@@ -4,7 +4,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 
 var rolesValidos = {
-    values: ['ADMIN_ROLE', 'USER_ROLE'],
+    values: ['SUPER_USER, ADMIN_ROLE', 'ALUMNO_ROLE', 'MAESTRO_ROLE'],
     message: '{VALUE} no es un rol permitido' 
 }
 
@@ -13,8 +13,7 @@ var usuarioSchema = new Schema({
     email:  { type: String, unique: true, required: [true, 'El correo es necesario'] },
     password:  { type: String, required: [true, 'La contraseña es necesaria'] },
     img:  { type: String, required: false },
-    academia: {type: String, required: true, default: 'SON Y CACHE' },
-    role:  { type: String, required: true, default: 'USER_ROLE', enum: rolesValidos }
+    role:  { type: String, required: true, default: 'ALUMNO_ROLE', enum: rolesValidos }
 });
 
 usuarioSchema.plugin( uniqueValidator, {message: '{PATH} debe ser unico'} );

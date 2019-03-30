@@ -16,6 +16,11 @@ app.use(bodyParser.json())
 var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
+var horarioRoutes = require('./routes/horario');
+var academiaRoutes = require('./routes/academia');
+var busquedaRoutes = require('./routes/busqueda');
+var uploadRoutes = require('./routes/upload');
+var imagenesRoutes = require('./routes/imagenes');
 
 //conexion a la DB
 mongoose.connection.openUri('mongodb://localhost:27017/escuelaDB', { useNewUrlParser: true }, ( err, res) => {
@@ -27,7 +32,12 @@ mongoose.set('useCreateIndex', true);
 
 //Rutas
 app.use('/usuario', usuarioRoutes);
+app.use('/horario', horarioRoutes);
+app.use('/academia', academiaRoutes);
 app.use('/login', loginRoutes);
+app.use('/busqueda', busquedaRoutes);
+app.use('/upload', uploadRoutes);
+app.use('/img', imagenesRoutes);
 app.use('/', appRoutes);
 
 //Escuchar peticiones
